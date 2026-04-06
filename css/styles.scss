@@ -3,6 +3,12 @@
 
 // 2. Include any default variable overrides here
 $link-decoration: none;
+$theme-colors:(
+  "primary": #133E7A,
+  "success": #21A592,
+  "dark": #0D0C0C,
+  "light": #FFFFFF,
+);
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";
@@ -18,3 +24,14 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "bootstrapComponents";
 
 // 5. Du kan lave styling her...
+
+
+.roboto{
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings:
+          "wdth" 100;
+           }
+

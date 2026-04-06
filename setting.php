@@ -9,13 +9,13 @@ require "settings/init.php";
 <html lang="da">
 <head>
     <meta charset="utf-8">
-    
+
     <title>Sigende titel</title>
-    
+
     <meta name="robots" content="All">
     <meta name="author" content="Udgiver">
     <meta name="copyright" content="Information om copyright">
-    
+
     <link href="css/styles.css" rel="stylesheet" type="text/css">
 
     <script src="https://kit.fontawesome.com/5458120b39.js" crossorigin="anonymous"></script>
@@ -23,12 +23,11 @@ require "settings/init.php";
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-
 
 <?php
 include("includes/navbar.php" );
