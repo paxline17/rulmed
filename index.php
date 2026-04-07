@@ -34,6 +34,12 @@ require "settings/init.php";
 </div>
 
 
+
+
+
+
+
+
 <?php
 include("includes/navbar.php" );
 ?>
