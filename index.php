@@ -29,6 +29,10 @@ require "settings/init.php";
 
 <body>
 
+<div class="text-center mt-3">
+    <img src="images/Logo.svg" class="img-fluid" width="130" alt="logo">
+</div>
+
 
 <?php
 include("includes/navbar.php" );
