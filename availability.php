@@ -51,8 +51,8 @@ require "settings/init.php";
         </div>
 
         <div class="col-2 col-md-1 text-center topbar">
-            <button class="btn fs-1 w-100">
-                <i class="fa-solid fa-circle-info topbar"></i>
+            <button class="btn fs-1 w-100 p-0" data-bs-toggle="modal" data-bs-target="#infoModal">
+                <i class="fa-solid fa-circle-info text-primary"></i>
             </button>
         </div>
     </div>
@@ -147,6 +147,42 @@ include("includes/navbar.php" );
 
                     <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm">Tilføj</button>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg" style="border-radius: 25px;">
+
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4 pt-0 text-center">
+                <i class="fa-solid fa-circle-info text-primary mb-3" style="font-size: 3rem;"></i>
+                <h4 class="fw-bold mb-3">Sådan bruger du siden</h4>
+
+                <p class="mb-4">
+                    Her på siden kan du søge efter forskellige <strong>butikker, restauranter</strong> og meget mere ved hjælp af søgefeltet i toppen.
+                </p>
+
+                <div class="p-3 mb-4 border">
+                    <p class="mb-0 small">
+                        <strong>Tip:</strong> Mangler der et sted? Så kan du selv indrapportere det ved at trykke på plus-ikonet ved siden af søgefeltet.
+                    </p>
+                </div>
+
+                <p>
+                    Vores mål er at gøre det nemt for alle at planlægge turen hjemmefra, så man altid er sikker på, om der er plads til ens behov, før man ankommer.
+                </p>
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center pb-4">
+                <button type="button" class="btn btn-primary rounded-pill px-5 fw-bold" data-bs-dismiss="modal" style="background-color: #1a407a; border: none;">
+                    Kom i gang
+                </button>
             </div>
         </div>
     </div>
