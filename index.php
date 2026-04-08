@@ -38,9 +38,12 @@ require "settings/init.php";
     <h1>Opslag</h1>
 </div>
 
+
 <div class="text-center">
-<div class="btn btn-lg btn btn-primary">
+    <button type="button" class="btn btn-lg btn-primary">Tilgængelighed</button>
+    <button type="button" class="btn btn-lg btn-primary">Støtte</button>
 </div>
+
 
 
 <div class="card" style="width: 18rem;">
@@ -86,7 +89,7 @@ require "settings/init.php";
     </div>
 </div>
 
-
+<div class="justify-content-between align-items-center">
 <div class="card" style="width: 18rem;">
     <img src="images/Kørestol.svg" height="120" width="120" class="card-img-top" alt="kørestol">
     <div class="card-body">
@@ -97,6 +100,7 @@ require "settings/init.php";
         </h5>
     </div>
 </div>
+</div>
     <div class="modal fade" id="kørestolModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -106,7 +110,22 @@ require "settings/init.php";
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="images/Kørestol.svg">
+                    <img src="images/Kørestol.svg" height="250" width="250">
+                    <h4>Livet i kørestol</h4>
+                    <p>Mit liv i kørestol – en dag ad gangen</p>
+                    <p>Jeg vågner som regel med solen, men det tager tid at komme i gang.
+                       Jeg bruger hjælpemidler, og nogle dage har jeg brug for en hånd.
+                       Jeg har lært at tage det i mit tempo.</p>
+                    <p>Når jeg er klar, starter dagen.
+                       Min elektriske kørestol giver mig frihed, men kræver planlægning.
+                       Jeg tjekker altid adgang – kantsten, døre og manglende ramper kan stadig være en udfordring.</p>
+                    <p>Jeg elsker at være aktiv og møde mennesker, og jeg siger gerne ja, selvom det kræver ekstra energi.
+                       Min hverdag ligner mange andres, men jeg bruger mere tid på logistik:
+                       Hvor kan jeg komme ind? Er der elevator? Er toilettet tilgængeligt?</p>
+                    <p>I min fritid nyder jeg de små ting – musik, natur, venner eller en stille aften.
+                       Jeg har lært at fokusere på det, der giver mig glæde.</p>
+                    <p>At leve i kørestol er ikke altid nemt, men det definerer ikke hele mit liv.
+                       Jeg finder løsninger og lever mit liv – på min måde.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
@@ -116,9 +135,9 @@ require "settings/init.php";
     </div>
 
 <div class="card" style="width: 18rem;">
-    <img src="images/sponsor.svg" height="120" width="120" class="card-img-top" alt="sponsor">
+    <img src="images/sponsor.svg" height="172" width="172" class="card-img-top" alt="sponsor">
     <div class="card-body">
-        <h5 class="card-title d-flex justify-content-between align-items-center">Livet i kørestol
+        <h5 class="card-title d-flex justify-content-between align-items-center">Sponsor
             <button type="button" class="btn btn-lg">
                 <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal" data-bs-target="#sponsorModal"></i>
             </button>
@@ -135,6 +154,34 @@ require "settings/init.php";
             </div>
             <div class="modal-body">
                 <img src="images/sponsor.svg">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" style="width: 18rem;">
+    <img src="images/DanmarkForAlle.svg" height="190" width="190" class="card-img-top" alt="danmarkForAlle">
+    <div class="card-body">
+        <h5 class="card-title d-flex justify-content-between align-items-center">Danmark for alle
+            <button type="button" class="btn btn-lg">
+                <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal" data-bs-target="#danmarkForAlleModal"></i>
+            </button>
+        </h5>
+    </div>
+</div>
+<div class="modal fade" id="danmarkForAlleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn btn-lg">
+                    <i class="bi bi-arrow-left text-reset" data-bs-dismiss="modal" aria-label="Close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/DanmarkForAlle.svg">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
