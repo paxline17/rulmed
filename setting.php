@@ -20,6 +20,7 @@ require "settings/init.php";
 
     <script src="https://kit.fontawesome.com/5458120b39.js" crossorigin="anonymous"></script>
 
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -35,9 +36,29 @@ require "settings/init.php";
 
 <div class="container">
     <div class="pt-2">
+        <p>Notidaktioner</p>
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <div class="pt-2">
         <p>Dark mode</p>
         <label class="switch">
             <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
+<div class="container">
+    <div class="pt-2">
+        <p>Lyd</p>
+        <label class="switch">
+            <input type="checkbox">
             <span class="slider"></span>
         </label>
     </div>

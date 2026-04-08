@@ -29,20 +29,29 @@ require "settings/init.php";
 
 <body>
 
-<div class="container mt-2">
-    <div class="d-flex align-items-center gap-3">
-        <div class="input-group search-container">
-            <span class="input-group-text bg-white border-end-0 rounded-pill-start">
-               <i class="fa-solid fa-magnifying-glass"></i>
-            </span>
-            <input type="text" id="searchInput" class="form-control border-start-0 border-end-0" placeholder="Søg">
-            <span class="input-group-text bg-white border-start-0 rounded-pill-end">
-            </span>
+<div class="container-fluid py-2 topbar">
+    <div class="row align-items-center g-2">
+
+        <div class="col-8 col-md-10">
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-1 border-dark">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="form-control border-start-1 border-dark" placeholder="Søg">
+            </div>
         </div>
 
-        <button class="btn">
-            <i class="fa-solid fa-circle-plus"></i>
-        </button>
+        <div class="col-2 col-md-1 text-center topbar">
+            <button class="btn fs-1 w-100">
+                <i class="fa-solid fa-circle-plus"></i>
+            </button>
+        </div>
+
+        <div class="col-2 col-md-1 text-center topbar">
+            <button class="btn fs-1 w-100">
+                <i class="fa-solid fa-circle-info"></i>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -54,13 +63,6 @@ include("includes/navbar.php" );
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-    let inputBox = document.querySelector(".input-box"),
-        searchIcon = document.querySelector(".icon"),
-        closeIcon = document.querySelector(".close-icon");
-    searchIcon.addEventListener("click", () => inputBox.classList.add("open"));
-    closeIcon.addEventListener("click", () => inputBox.classList.remove("open"));
-</script>
 
 </body>
 </html>
