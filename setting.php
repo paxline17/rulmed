@@ -29,11 +29,28 @@ require "settings/init.php";
 
 <body>
 
+<div class="container pt-5 text-center">
+    <h1>Indstillinger</h1>
+</div>
+
+<div class="container">
+    <div class="pt-2">
+        <p>Dark mode</p>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+</div>
+
 <?php
 include("includes/navbar.php" );
 ?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
 </body>
 </html>
