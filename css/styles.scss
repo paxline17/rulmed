@@ -35,30 +35,9 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
           "wdth" 100;
            }
 
-
- .search-container {
-   max-width: 400px;
-   border: 1px solid #333;
-   border-radius: 50px;
-   overflow: hidden;
- }
-
-.search-container .form-control:focus {
-  box-shadow: none;
-  border-color: #dee2e6;
-}
-
-.rounded-pill-start { border-radius: 50px 0 0 50px; }
-.rounded-pill-end { border-radius: 0 50px 50px 0; }
-
-.fa-circle-plus {
-  width: 45p;
-  height: 45px;
-  border-width: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+.topbar i{
+  color: #133E7A;
+;
 }
 
 .switch{
@@ -89,6 +68,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   border-radius: 50%;
 }
 
-input:checked + .slider { background-color: #2196F3; }
+input:checked + .slider { background-color: #133E7A; }
 input:checked + .slider:before { transform: translateX(20px); }
 
