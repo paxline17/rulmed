@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $sql = "INSERT INTO locations (locaName, locaCategoryId, locaAddress, locaDescription, locaParking, locaRamp, locaToilet, locaElevator, locaStairs, locaImageName) 
-            VALUES (:locaName, :locaCategoryId, :locaAddress, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaStairs, :locaImageName)";
+            VALUES (:locaName, :locaCategoryId, :locaAddress, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaElevator, :locaStairs, :locaImageName)";
 
     $bind = [
             ":locaName"        => $_POST["locaName"],
@@ -156,7 +156,7 @@ include("includes/navbar.php" );
                             <option value="">Vælg kategori...</option>
 
                             <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category->cataId; ?>">
+                                <option value="<?= $category->cateId; ?>">
                                     <?= $category->cateName; ?>
                                 </option>
                             <?php endforeach; ?>
