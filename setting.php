@@ -65,9 +65,26 @@ require "settings/init.php";
 </div>
 
 
-<div class="container pt-5 text-center">
-    <h1>Kontakt</h1>
+
+<div class="container pt-5">
+    <h1 class="text-center">Kontakt</h1>
+
+    <div class="pt-2" style="display:flex; justify-content: space-between; align-items: center;">
+    <p>E-mail</p>
+    <p><a href="mailto:info@rulmed.dk">info@rulmed.dk</a></p>
 </div>
+
+    <div class="pt-2" style="display:flex; justify-content: space-between; align-items: center;">
+        <p>Tlf</p>
+        <p>+45 12 34 56 78</p>
+    </div>
+
+    <div class="pt-2" style="display:flex; justify-content: space-between; align-items: center;">
+        <p>Hjemmeside</p>
+        <p><a href="https//.rulmed.dk">www.rulmed.dk</a></p>
+    </div>
+
+
 
 
 
