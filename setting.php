@@ -35,7 +35,7 @@ require "settings/init.php";
 </div>
 
 <div class="container">
-    <div class="pt-2">
+    <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
         <p>Notidaktioner</p>
         <label class="switch">
             <input type="checkbox">
@@ -45,7 +45,7 @@ require "settings/init.php";
 </div>
 
 <div class="container">
-    <div class="pt-2">
+    <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
         <p>Dark mode</p>
         <label class="switch">
             <input type="checkbox" id="darkModeToggle">
@@ -55,7 +55,7 @@ require "settings/init.php";
 </div>
 
 <div class="container">
-    <div class="pt-2">
+    <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
         <p>Lyd</p>
         <label class="switch">
             <input type="checkbox">
@@ -63,6 +63,13 @@ require "settings/init.php";
         </label>
     </div>
 </div>
+
+
+<div class="container pt-5 text-center">
+    <h1>Kontakt</h1>
+</div>
+
+
 
 <?php
 include("includes/navbar.php" );
