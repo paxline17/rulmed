@@ -4,7 +4,47 @@
  */
 
 require "settings/init.php";
+
+$sql = "SELECT * FROM locations";
+$binds = [];
+$locations = $db->sql($sql, $binds);
+
+
+$sql = "SELECT * FROM categories";
+$binds = [];
+$categories = $db->sql($sql, $binds);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+    $imageName = "";
+    if (!empty($_FILES['locationImage']['name'])) {
+        $imageName = $_FILES['locationImage']['name'];
+        move_uploaded_file($_FILES['locationImage']['tmp_name'], "images/" . $imageName);
+    }
+
+    $sql = "INSERT INTO locations (locaName, locaCategoryId, locaAddrees, locaDescription, locaParking, locaRamp, locaToilet, locaStairs, locaImageName) 
+            VALUES (:locaName, :locaCategoryId, :locaAddrees, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaStairs, :locaImageName)";
+
+    $bind = [
+            ":locaName"        => $_POST["locaName"],
+            ":locaCategoryId"  => $_POST["locaCategoryId"],
+            ":locaAddrees"     => $_POST["locaAddress"],
+            ":locaDescription" => $_POST["locaDescription"],
+            ":locaParking"     => isset($_POST["locaParking"]) ? 1 : 0,
+            ":locaRamp"        => isset($_POST["locaRamp"]) ? 1 : 0,
+            ":locaToilet"      => isset($_POST["locaToilet"]) ? 1 : 0,
+            ":locaStairs"      => isset($_POST["locaStairs"]) ? 1 : 0,
+            ":locaImageName"   => $imageName
+    ];
+
+    $db->sql($sql, $bind, false);
+
+    header("Location: index.php");
+    exit;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -59,11 +99,6 @@ require "settings/init.php";
 </div>
 
 
-<?php
-        $sql = "SELECT * FROM locations";
-        $binds = [];
-        $locations = $db->sql($sql, $binds);
-?>
 
     <div class="container my-2 p-3">
         <div class="row g-4">
@@ -92,6 +127,7 @@ require "settings/init.php";
 include("includes/navbar.php" );
 ?>
 
+
 <div class="modal fade" id="indrapportModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -104,28 +140,34 @@ include("includes/navbar.php" );
                 <form action="insert_location.php" method="POST" enctype="multipart/form-data">
 
                     <div class="mb-3">
-                        <label class="form-label">Navn</label>
-                        <input type="text" name="locaName" class="form-control rounded-pill border-dark" required placeholder="Bog & ide">
+                        <label class="form-label" for="locaName">Navn</label>
+                        <input type="text" name="locaName" class="form-control rounded-pill border-dark" id="locaName" required placeholder="Bog & ide">
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Adresse</label>
-                        <input type="text" name="locaAddress" class="form-control rounded-pill border-dark" required placeholder="Østergågade 2A, 4800 Nykøbing Falster">
+                        <label class="form-label" for="locaAddress">Adresse</label>
+                        <input type="text" name="locaAddress" class="form-control rounded-pill border-dark" id="locaAddress" required placeholder="Østergågade 2A, 4800 Nykøbing Falster">
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Kategori</label>
-                        <select name="locaCategoryId" class="form-select rounded-pill border-dark" required>
+                        <label class="form-label" for="locaCategoryId">Kategori</label>
+                        <select name="locaCategoryId" class="form-select rounded-pill border-dark" id="locaCategoryId">
                             <option value="">Vælg kategori...</option>
+
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?= $category['categoryId'] ?>">
+                                    <?= $category['categoryName'] ?>
+                                </option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label d-flex align-items-center">
+                        <label class="form-label d-flex align-items-center" for="locaDescription">
                             Tilføj information her
                             <i class="fa-solid fa-circle-info ms-2 text-primary" data-bs-toggle="popover" data-bs-trigger="click" title="Beskrivelse" data-bs-content="Her kan du skrive ekstra detaljer, f.eks. om døråbnere eller specifikke forhold."></i>
                         </label>
-                        <textarea name="locaDescription" class="form-control border-dark" rows="3" style="border-radius: 15px;"></textarea>
+                        <textarea name="locaDescription" class="form-control border-dark" id="locaDescription" rows="3" style="border-radius: 15px;"></textarea>
                     </div>
 
                     <p class="mb-1 fw-bold">Aftjekning</p>
@@ -133,34 +175,34 @@ include("includes/navbar.php" );
 
                         <div class="col-4">
                             <div class="form-check d-flex align-items-center mb-1">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaParking" value="1">
-                                <label class="form-check-label small me-1">P-plads</label>
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaParking" id="locaParking" value="1">
+                                <label class="form-check-label small me-1" for="locaParking">P-plads</label>
                                 <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Parkering" data-bs-content="Findes der handicapparkering tæt på?"></i>
                             </div>
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaRamp" value="1">
-                                <label class="form-check-label small me-1">Rampe</label>
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaRamp" id="locaRamp" value="1">
+                                <label class="form-check-label small me-1" for="locaRamp">Rampe</label>
                                 <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Rampe" data-bs-content="Er der en rampe ved niveauforskelle?"></i>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="form-check d-flex align-items-center mb-1">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaToilet" value="1">
-                                <label class="form-check-label small me-1">Toilet</label>
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaToilet" id="locaToilet" value="1">
+                                <label class="form-check-label small me-1 " for="locaToilet">Toilet</label>
                                 <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Toilet" data-bs-content="Er der et handicapvenligt toilet?"></i>
                             </div>
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaElevator" value="1">
-                                <label class="form-check-label small me-1">Elevator</label>
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaElevator" id="locaElevator" value="1">
+                                <label class="form-check-label small me-1" for="locaElevator">Elevator</label>
                                 <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Elevator" data-bs-content="Er der elevator til alle etager?"></i>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaStaris" value="1">
-                                <label class="form-check-label small me-1">Trapper</label>
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaStairs" id="locaStairs" value="1">
+                                <label class="form-check-label small me-1" for="locaStairs">Trapper</label>
                                 <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Trapper" data-bs-content="Er der trapper?"></i>
                             </div>
                         </div>
