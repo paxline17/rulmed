@@ -44,10 +44,10 @@ require "settings/init.php";
     <a href="https://whydonate.com/da/fundraising/danmark-rundt-i-kerestol-og-handicapbil" type="button" class="btn btn-lg btn-primary">Støtte</a>
     </div>
 
-<div class="container">
+<div class="container forsideContainer">
 <div class="row">
 <div class="d-flex justify-content-center align-items-center">
-<div class="card" style="width: 18rem;">
+<div class="card forsideCard" style="width: 18rem;">
     <img src="images/danmarkRundt.svg" class="card-img-top" alt="danmarkRundt">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Indsamling
@@ -91,10 +91,10 @@ require "settings/init.php";
     </div>
 </div>
 
-<div class="container">
+<div class="container forsideContainer">
 <div class="row">
 <div class="d-flex justify-content-center align-items-center">
-<div class="card" style="width: 18rem;">
+<div class="card forsideCard" style="width: 18rem;">
     <img src="images/Kørestol.svg" height="120" width="120" class="card-img-top" alt="kørestol">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Livet i kørestol
@@ -142,10 +142,10 @@ require "settings/init.php";
         </div>
     </div>
 
-<div class="container">
+<div class="container forsideContainer">
 <div class="row">
 <div class="d-flex justify-content-center align-items-center">
-<div class="card" style="width: 18rem;">
+<div class="card forsideCard" style="width: 18rem;">
     <img src="images/sponsor.svg" height="172" width="172" class="card-img-top" alt="sponsor">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Sponsor
@@ -180,10 +180,10 @@ require "settings/init.php";
     </div>
 </div>
 
-<div class="container">
+<div class="container forsideContainer">
 <div class="row">
 <div class="d-flex justify-content-center align-items-center">
-<div class="card" style="width: 18rem;">
+<div class="card forsideCard" style="width: 18rem;">
     <img src="images/DanmarkForAlle.svg" height="190" width="190" class="card-img-top" alt="danmarkForAlle">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Danmark for alle

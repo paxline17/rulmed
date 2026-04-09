@@ -95,14 +95,14 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   border-radius: 50%;
 }
 
-.container {
+.forsideContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 kolonner */
   gap: 16px;
   padding: 16px;
 }
 
-.card {
+.forsideCard {
   border-radius: 12px;
   overflow: hidden;
   background: white;
