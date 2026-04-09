@@ -44,7 +44,8 @@ require "settings/init.php";
     <a href="https://whydonate.com/da/fundraising/danmark-rundt-i-kerestol-og-handicapbil" type="button" class="btn btn-lg btn-primary">Støtte</a>
     </div>
 
-
+<div class="container">
+<div class="row">
 <div class="d-flex justify-content-center align-items-center">
 <div class="card" style="width: 18rem;">
     <img src="images/danmarkRundt.svg" class="card-img-top" alt="danmarkRundt">
@@ -55,6 +56,8 @@ require "settings/init.php";
             </button>
         </h5>
     </div>
+</div>
+</div>
 </div>
 </div>
 <div class="modal fade" id="indsamlingsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -88,6 +91,8 @@ require "settings/init.php";
     </div>
 </div>
 
+<div class="container">
+<div class="row">
 <div class="d-flex justify-content-center align-items-center">
 <div class="card" style="width: 18rem;">
     <img src="images/Kørestol.svg" height="120" width="120" class="card-img-top" alt="kørestol">
@@ -98,6 +103,8 @@ require "settings/init.php";
             </button>
         </h5>
     </div>
+</div>
+</div>
 </div>
 </div>
     <div class="modal fade" id="kørestolModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -135,6 +142,8 @@ require "settings/init.php";
         </div>
     </div>
 
+<div class="container">
+<div class="row">
 <div class="d-flex justify-content-center align-items-center">
 <div class="card" style="width: 18rem;">
     <img src="images/sponsor.svg" height="172" width="172" class="card-img-top" alt="sponsor">
@@ -145,6 +154,8 @@ require "settings/init.php";
             </button>
         </h5>
     </div>
+</div>
+</div>
 </div>
 </div>
 <div class="modal fade" id="sponsorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -169,6 +180,8 @@ require "settings/init.php";
     </div>
 </div>
 
+<div class="container">
+<div class="row">
 <div class="d-flex justify-content-center align-items-center">
 <div class="card" style="width: 18rem;">
     <img src="images/DanmarkForAlle.svg" height="190" width="190" class="card-img-top" alt="danmarkForAlle">
@@ -179,6 +192,8 @@ require "settings/init.php";
             </button>
         </h5>
     </div>
+</div>
+</div>
 </div>
 </div>
 <div class="modal fade" id="danmarkForAlleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

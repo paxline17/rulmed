@@ -95,6 +95,19 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   border-radius: 50%;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 kolonner */
+  gap: 16px;
+  padding: 16px;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+}
+
 input:checked + .slider { background-color: #133E7A; }
 input:checked + .slider:before { transform: translateX(20px); }
 
