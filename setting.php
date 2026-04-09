@@ -36,7 +36,7 @@ require "settings/init.php";
 
 <div class="container">
     <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
-        <p>Notidaktioner</p>
+        <p>Notifikationer</p>
         <label class="switch">
             <input type="checkbox">
             <span class="slider"></span>
