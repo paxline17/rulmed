@@ -65,25 +65,28 @@ require "settings/init.php";
         $locations = $db->sql($sql, $binds);
 ?>
 
-<div class="container my-4">
-    <div class="row g-3">
-        <?php foreach ($locations as $location) : ?>
-        <div class="card bg-dark text-white border-0 overflow-hidden shadow-sm availabilityCard">
+    <div class="container my-2 p-3">
+        <div class="row g-4">
+            <?php foreach ($locations as $location) : ?>
+                <div class="col-12 col-md-6">
+                    <div class="card availabilityCard">
 
-            <img src="images/<?php echo $location->locaImageName; ?>" class="card-img h-100 availabilityImg" alt="<?php echo $location->locaName; ?>">
+                        <img src="images/<?php echo htmlspecialchars($location->locaImageName); ?>"
+                             class="card-img h-100 availabilityImg"
+                             alt="<?php echo $location->locaName; ?>">
 
-            <div class="card-img-overlay d-flex align-items-end availabilityName">
-                <h2 class="card-title fw-bold mb-0">
-                    <?php  echo $location->locaName; ?>
-                </h2>
-            </div>
-         </div>
+                        <div class="card-img-overlay d-flex align-items-end p-0">
+                            <h2 class="card-title fw-bold mb-0 availabilityName">
+                                <?php echo $location->locaName; ?>
+                            </h2>
+                        </div>
+
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-     <?php endforeach; ?>
     </div>
 </div>
-
-
 
 <?php
 include("includes/navbar.php" );
