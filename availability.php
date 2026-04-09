@@ -23,17 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES['locationImage']['tmp_name'], "images/" . $imageName);
     }
 
-    $sql = "INSERT INTO locations (locaName, locaCategoryId, locaAddrees, locaDescription, locaParking, locaRamp, locaToilet, locaStairs, locaImageName) 
-            VALUES (:locaName, :locaCategoryId, :locaAddrees, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaStairs, :locaImageName)";
+    $sql = "INSERT INTO locations (locaName, locaCategoryId, locaAddress, locaDescription, locaParking, locaRamp, locaToilet, locaElevator, locaStairs, locaImageName) 
+            VALUES (:locaName, :locaCategoryId, :locaAddress, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaStairs, :locaImageName)";
 
     $bind = [
             ":locaName"        => $_POST["locaName"],
             ":locaCategoryId"  => $_POST["locaCategoryId"],
-            ":locaAddrees"     => $_POST["locaAddress"],
+            ":locaAddress"     => $_POST["locaAddress"],
             ":locaDescription" => $_POST["locaDescription"],
             ":locaParking"     => isset($_POST["locaParking"]) ? 1 : 0,
             ":locaRamp"        => isset($_POST["locaRamp"]) ? 1 : 0,
             ":locaToilet"      => isset($_POST["locaToilet"]) ? 1 : 0,
+            ":locaElevator"    => isset($_POST["locaElevator"]) ? 1 : 0,
             ":locaStairs"      => isset($_POST["locaStairs"]) ? 1 : 0,
             ":locaImageName"   => $imageName
     ];
@@ -106,9 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-12 col-md-6">
                     <div class="card availabilityCard">
 
-                        <img src="images/<?php echo htmlspecialchars($location->locaImageName); ?>"
+                        <img src="images/<?= $location->locaImageName; ?>"
                              class="card-img h-100 availabilityImg"
-                             alt="<?php echo $location->locaName; ?>">
+                             alt="<?= $location->locaName; ?>">
 
                         <div class="card-img-overlay d-flex align-items-end p-0">
                             <h2 class="card-title fw-bold mb-0 availabilityName">
@@ -137,7 +138,7 @@ include("includes/navbar.php" );
             </div>
 
             <div class="modal-body">
-                <form action="insert_location.php" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label class="form-label" for="locaName">Navn</label>
@@ -155,10 +156,11 @@ include("includes/navbar.php" );
                             <option value="">Vælg kategori...</option>
 
                             <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category['categoryId'] ?>">
-                                    <?= $category['categoryName'] ?>
+                                <option value="<?= $category->cataId; ?>">
+                                    <?= $category->cateName; ?>
                                 </option>
                             <?php endforeach; ?>
+
                         </select>
                     </div>
 
