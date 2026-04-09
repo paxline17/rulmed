@@ -64,7 +64,15 @@ require "settings/init.php";
     </div>
 </div>
 
-
+<div class="container pt-5">
+<hr style="
+     border: 0;
+     height: 1px;
+     background-color: #000;
+     width; 50%;
+     margin; 20px auto;
+     ">
+</div>
 
 <div class="container pt-5">
     <h1 class="text-center">Kontakt</h1>
