@@ -30,7 +30,7 @@ require "settings/init.php";
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<div>
 
 <div class="container-fluid py-2">
     <div class="row align-items-center g-2">
@@ -60,6 +60,32 @@ require "settings/init.php";
 
 
 <?php
+        $sql = "SELECT * FROM locations";
+        $binds = [];
+        $locations = $db->sql($sql, $binds);
+?>
+
+<div class="container my-4">
+    <div class="row g-3">
+        <?php foreach ($locations as $location) : ?>
+        <div class="card bg-dark text-white border-0 overflow-hidden shadow-sm availabilityCard">
+
+            <img src="images/<?php echo $location->locaImageName; ?>" class="card-img h-100 availabilityImg" alt="<?php echo $location->locaName; ?>">
+
+            <div class="card-img-overlay d-flex align-items-end availabilityName">
+                <h2 class="card-title fw-bold mb-0">
+                    <?php  echo $location->locaName; ?>
+                </h2>
+            </div>
+         </div>
+        </div>
+     <?php endforeach; ?>
+    </div>
+</div>
+
+
+
+<?php
 include("includes/navbar.php" );
 ?>
 
@@ -76,12 +102,12 @@ include("includes/navbar.php" );
 
                     <div class="mb-3">
                         <label class="form-label">Navn</label>
-                        <input type="text" name="locaName" class="form-control rounded-pill border-dark" required>
+                        <input type="text" name="locaName" class="form-control rounded-pill border-dark" required placeholder="Bog & ide">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Adresse</label>
-                        <input type="text" name="locaAddress" class="form-control rounded-pill border-dark" required>
+                        <input type="text" name="locaAddress" class="form-control rounded-pill border-dark" required placeholder="Østergågade 2A, 4800 Nykøbing Falster">
                     </div>
 
                     <div class="mb-3">

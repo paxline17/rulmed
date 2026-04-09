@@ -40,8 +40,22 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 ;
 }
 
-.modal{
-  font-family: Roboto;
+.body{
+  font-family: Roboto, sans-serif;
+}
+
+.availabilityCard{
+  border-radius: 20px;
+  height: 150px;
+}
+
+.availabilityImg{
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.availabilityName{
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
 }
 
 .switch{
