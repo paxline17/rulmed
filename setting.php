@@ -35,8 +35,8 @@ require "settings/init.php";
 </div>
 
 <div class="container">
-    <div class="pt-2">
-        <p>Notidaktioner</p>
+    <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
+        <p>Notifikationer</p>
         <label class="switch">
             <input type="checkbox">
             <span class="slider"></span>
@@ -45,7 +45,7 @@ require "settings/init.php";
 </div>
 
 <div class="container">
-    <div class="pt-2">
+    <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
         <p>Dark mode</p>
         <label class="switch">
             <input type="checkbox" id="darkModeToggle">
@@ -55,7 +55,7 @@ require "settings/init.php";
 </div>
 
 <div class="container">
-    <div class="pt-2">
+    <div class="pt-2" style="display: flex; justify-content: space-between; align-items">
         <p>Lyd</p>
         <label class="switch">
             <input type="checkbox">
@@ -63,6 +63,38 @@ require "settings/init.php";
         </label>
     </div>
 </div>
+
+<div class="container pt-5">
+<hr style="
+     border: 0;
+     height: 1px;
+     background-color: #000;
+     width; 50%;
+     margin; 20px auto;
+     ">
+</div>
+
+<div class="container pt-5">
+    <h1 class="text-center">Kontakt</h1>
+
+    <div class="pt-2" style="display:flex; justify-content: space-between; align-items: center;">
+    <p>E-mail</p>
+    <p><a href="mailto:info@rulmed.dk">info@rulmed.dk</a></p>
+</div>
+
+    <div class="pt-2" style="display:flex; justify-content: space-between; align-items: center;">
+        <p>Tlf</p>
+        <p>+45 12 34 56 78</p>
+    </div>
+
+    <div class="pt-2" style="display:flex; justify-content: space-between; align-items: center;">
+        <p>Hjemmeside</p>
+        <p><a href="https//.rulmed.dk">www.rulmed.dk</a></p>
+    </div>
+
+
+
+
 
 <?php
 include("includes/navbar.php" );
