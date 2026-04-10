@@ -122,6 +122,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   background: white;
 }
 
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+}
+
 input:checked + .slider { background-color: #133E7A; }
 input:checked + .slider:before { transform: translateX(20px); }
 
