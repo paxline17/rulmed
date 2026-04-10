@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
 
-    <title>Sigende titel</title>
+    <title>Rul med</title>
 
     <meta name="robots" content="All">
     <meta name="author" content="Udgiver">
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-
+<?php if (!$locaId): ?>
 <div class="container-fluid py-2">
     <div class="row align-items-center g-2">
         <div class="col-8 col-md-10">
@@ -113,9 +113,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="container my-2 p-3">
+        <?php if ($locaId && !empty($locations)):
+        $loca = $locations[0];
+        ?>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="availability.php" class="text-dark fs-3 mb-3 d-inline-block">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+
+                        <img src="images/<?= $loca->locaImageName; ?>" class="img-fluid rounded-4 mb-3 w-100 shadow-sm" alt="<?= $loca->locaName; ?>">
+
+                        <h2 class="fw-bold mb-1"><?= $loca->locaName; ?></h2>
+                        <p class="text-muted mb-4"><?= $loca->locaAddress; ?></p>
+
+                        <p class="mb-5"><?= nl2br($loca->locaDescription); ?></p>
+
+                        <div class="d-flex justify-content-between align-items-center px-2 py-3 border-top border-bottom mb-4">
+
+                            <i class="fa-solid fa-wheelchair fs-3 <?=($loca->locaParking) ? 'text-dark' : 'text-silver-light' ?>" title="P-plads"></i>
+
+                            <i class="fa-solid fa-truck-ramp-box fs-3 <?=($loca->locaRamp) ? 'text-dark' : 'text-silver-light' ?>" title="Rampe"></i>
+
+                            <i class="fa-solid fa-restroom fs-3 <?=($loca->locaToilet) ? 'text-dark' : 'text-silver-light' ?>" title="Toilet"></i>
+
+                            <i class="fa-solid fa-elevator fs-3 <?=($loca->locaElevator) ? 'text-dark' : 'text-silver-light' ?>" title="Elevator"></i>
+
+                            <i class="fa-solid fa-stairs fs-3 <?=($loca->locaStairs) ? 'text-dark' : 'text-silver-light' ?>" title="Trapper"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+<?php else: ?>
     <div class="row g-4">
         <?php foreach ($locations as $location) : ?>
             <div class="col-12 col-md-6">
@@ -139,6 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         <?php endforeach; ?>
     </div>
+    <?php endif; ?>
 </div>
 
 
