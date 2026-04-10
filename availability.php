@@ -5,9 +5,15 @@
 
 require "settings/init.php";
 
-$sql = "SELECT * FROM locations";
-$binds = [];
-$locations = $db->sql($sql, $binds);
+if (isset($_GET['locaId'])) {
+    $sql = "SELECT * FROM locations WHERE locaId = :locaId";
+    $binds = [":locaId" => $_GET['locaId']];
+    $locations = $db->sql($sql, $binds);
+} else {
+    $sql = "SELECT * FROM locations";
+    $binds = [];
+    $locations = $db->sql($sql, $binds);
+}
 
 
 $sql = "SELECT * FROM categories";
@@ -27,27 +33,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES (:locaName, :locaCategoryId, :locaAddress, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaElevator, :locaStairs, :locaImageName)";
 
     $bind = [
-            ":locaName"        => $_POST["locaName"],
-            ":locaCategoryId"  => $_POST["locaCategoryId"],
-            ":locaAddress"     => $_POST["locaAddress"],
+            ":locaName" => $_POST["locaName"],
+            ":locaCategoryId" => $_POST["locaCategoryId"],
+            ":locaAddress" => $_POST["locaAddress"],
             ":locaDescription" => $_POST["locaDescription"],
-            ":locaParking"     => isset($_POST["locaParking"]) ? 1 : 0,
-            ":locaRamp"        => isset($_POST["locaRamp"]) ? 1 : 0,
-            ":locaToilet"      => isset($_POST["locaToilet"]) ? 1 : 0,
-            ":locaElevator"    => isset($_POST["locaElevator"]) ? 1 : 0,
-            ":locaStairs"      => isset($_POST["locaStairs"]) ? 1 : 0,
-            ":locaImageName"   => $imageName
+            ":locaParking" => isset($_POST["locaParking"]) ? 1 : 0,
+            ":locaRamp" => isset($_POST["locaRamp"]) ? 1 : 0,
+            ":locaToilet" => isset($_POST["locaToilet"]) ? 1 : 0,
+            ":locaElevator" => isset($_POST["locaElevator"]) ? 1 : 0,
+            ":locaStairs" => isset($_POST["locaStairs"]) ? 1 : 0,
+            ":locaImageName" => $imageName
     ];
 
     $db->sql($sql, $bind, false);
 
-    header("Location: index.php");
+    header("Location: availability.php");
     exit;
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="da">
+<div lang="da">
 <head>
     <meta charset="utf-8">
 
@@ -66,45 +72,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<div>
 
 <div class="container-fluid py-2">
     <div class="row align-items-center g-2">
-
         <div class="col-8 col-md-10">
             <div class="input-group topbar">
                 <span class="input-group-text bg-white border-end-1 border-dark">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
-                <input type="text" class="form-control border-start-1 border-dark" placeholder="Søg">
+                    <input type="text" class="form-control border-start-1 border-dark" placeholder="Søg">
+                </div>
             </div>
-        </div>
 
-        <div class="col-2 col-md-1 text-center topbar">
-            <button class="btn fs-1 w-100" data-bs-toggle="modal" data-bs-target="#indrapportModal">
-                <i class="fa-solid fa-circle-plus "></i>
-            </button>
-        </div>
+            <div class="col-2 col-md-1 text-center topbar">
+                <button class="btn fs-1 w-100" data-bs-toggle="modal" data-bs-target="#indrapportModal">
+                    <i class="fa-solid fa-circle-plus "></i>
+                </button>
+            </div>
 
-        <div class="col-2 col-md-1 text-center topbar">
-            <button class="btn fs-1 w-100 p-0" data-bs-toggle="modal" data-bs-target="#infoModal">
-                <i class="fa-solid fa-circle-info text-primary"></i>
-            </button>
+            <div class="col-2 col-md-1 text-center topbar">
+                <button class="btn fs-1 w-100 p-0" data-bs-toggle="modal" data-bs-target="#infoModal">
+                    <i class="fa-solid fa-circle-info text-primary"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
+<div class="container my-2 p-3">
+    <div class="row g-4">
+        <?php foreach ($locations as $location) : ?>
+            <div class="col-12 col-md-6">
 
-
-    <div class="container my-2 p-3">
-        <div class="row g-4">
-            <?php foreach ($locations as $location) : ?>
-                <div class="col-12 col-md-6">
+                <a href="availability.php?locaId=<?= $location->locaId ?>" class="text-decoration-none"">
                     <div class="card availabilityCard">
 
                         <img src="images/<?= $location->locaImageName; ?>"
@@ -113,19 +119,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="card-img-overlay d-flex align-items-end p-0">
                             <h2 class="card-title fw-bold mb-0 availabilityName">
-                                <?php echo $location->locaName; ?>
+                                <?= $location->locaName; ?>
                             </h2>
                         </div>
 
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
+                </a>
+
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
 
+
 <?php
-include("includes/navbar.php" );
+include("includes/navbar.php");
 ?>
 
 
@@ -142,12 +150,14 @@ include("includes/navbar.php" );
 
                     <div class="mb-3">
                         <label class="form-label" for="locaName">Navn</label>
-                        <input type="text" name="locaName" class="form-control rounded-pill border-dark" id="locaName" required placeholder="Bog & ide">
+                        <input type="text" name="locaName" class="form-control rounded-pill border-dark" id="locaName"
+                               required placeholder="Bog & ide">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="locaAddress">Adresse</label>
-                        <input type="text" name="locaAddress" class="form-control rounded-pill border-dark" id="locaAddress" required placeholder="Østergågade 2A, 4800 Nykøbing Falster">
+                        <input type="text" name="locaAddress" class="form-control rounded-pill border-dark"
+                               id="locaAddress" required placeholder="Østergågade 2A, 4800 Nykøbing Falster">
                     </div>
 
                     <div class="mb-3">
@@ -167,9 +177,12 @@ include("includes/navbar.php" );
                     <div class="mb-3">
                         <label class="form-label d-flex align-items-center" for="locaDescription">
                             Tilføj information her
-                            <i class="fa-solid fa-circle-info ms-2 text-primary" data-bs-toggle="popover" data-bs-trigger="click" title="Beskrivelse" data-bs-content="Her kan du skrive ekstra detaljer, f.eks. om døråbnere eller specifikke forhold."></i>
+                            <i class="fa-solid fa-circle-info ms-2 text-primary" data-bs-toggle="popover"
+                               data-bs-trigger="click" title="Beskrivelse"
+                               data-bs-content="Her kan du skrive ekstra detaljer, f.eks. om døråbnere eller specifikke forhold."></i>
                         </label>
-                        <textarea name="locaDescription" class="form-control border-dark" id="locaDescription" rows="3" style="border-radius: 15px;"></textarea>
+                        <textarea name="locaDescription" class="form-control border-dark" id="locaDescription" rows="3"
+                                  style="border-radius: 15px;"></textarea>
                     </div>
 
                     <p class="mb-1 fw-bold">Aftjekning</p>
@@ -177,35 +190,50 @@ include("includes/navbar.php" );
 
                         <div class="col-4">
                             <div class="form-check d-flex align-items-center mb-1">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaParking" id="locaParking" value="1">
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaParking"
+                                       id="locaParking" value="1">
                                 <label class="form-check-label small me-1" for="locaParking">P-plads</label>
-                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Parkering" data-bs-content="Findes der handicapparkering tæt på?"></i>
+                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer"
+                                   data-bs-toggle="popover" data-bs-trigger="click" title="Parkering"
+                                   data-bs-content="Findes der handicapparkering tæt på?"></i>
                             </div>
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaRamp" id="locaRamp" value="1">
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaRamp" id="locaRamp"
+                                       value="1">
                                 <label class="form-check-label small me-1" for="locaRamp">Rampe</label>
-                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Rampe" data-bs-content="Er der en rampe ved niveauforskelle?"></i>
+                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer"
+                                   data-bs-toggle="popover" data-bs-trigger="click" title="Rampe"
+                                   data-bs-content="Er der en rampe ved niveauforskelle?"></i>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="form-check d-flex align-items-center mb-1">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaToilet" id="locaToilet" value="1">
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaToilet"
+                                       id="locaToilet" value="1">
                                 <label class="form-check-label small me-1 " for="locaToilet">Toilet</label>
-                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Toilet" data-bs-content="Er der et handicapvenligt toilet?"></i>
+                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer"
+                                   data-bs-toggle="popover" data-bs-trigger="click" title="Toilet"
+                                   data-bs-content="Er der et handicapvenligt toilet?"></i>
                             </div>
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaElevator" id="locaElevator" value="1">
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaElevator"
+                                       id="locaElevator" value="1">
                                 <label class="form-check-label small me-1" for="locaElevator">Elevator</label>
-                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Elevator" data-bs-content="Er der elevator til alle etager?"></i>
+                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer"
+                                   data-bs-toggle="popover" data-bs-trigger="click" title="Elevator"
+                                   data-bs-content="Er der elevator til alle etager?"></i>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaStairs" id="locaStairs" value="1">
+                                <input class="form-check-input me-1 mt-0" type="checkbox" name="locaStairs"
+                                       id="locaStairs" value="1">
                                 <label class="form-check-label small me-1" for="locaStairs">Trapper</label>
-                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer" data-bs-toggle="popover" data-bs-trigger="click" title="Trapper" data-bs-content="Er der trapper?"></i>
+                                <i class="fa-solid fa-circle-info text-muted small cursor-pointer"
+                                   data-bs-toggle="popover" data-bs-trigger="click" title="Trapper"
+                                   data-bs-content="Er der trapper?"></i>
                             </div>
                         </div>
                     </div>
@@ -213,7 +241,9 @@ include("includes/navbar.php" );
                     <div class="mb-4">
                         <label class="form-label d-flex align-items-center">
                             Tilføj billeder
-                            <i class="fa-solid fa-circle-info ms-2 text-primary" data-bs-toggle="popover" data-bs-trigger="click" title="Billeder" data-bs-content="Upload et billede af indgangen eller de faciliteter du nævner."></i>
+                            <i class="fa-solid fa-circle-info ms-2 text-primary" data-bs-toggle="popover"
+                               data-bs-trigger="click" title="Billeder"
+                               data-bs-content="Upload et billede af indgangen eller de faciliteter du nævner."></i>
                         </label>
                         <input type="file" name="locationImage" class="form-control" accept="image/*">
                     </div>
@@ -238,22 +268,26 @@ include("includes/navbar.php" );
                 <h4 class="fw-bold mb-3">Sådan bruger du siden</h4>
 
                 <p class="mb-4">
-                    Her på siden kan du søge efter forskellige <strong>butikker, restauranter</strong> og meget mere ved hjælp af søgefeltet i toppen.
+                    Her på siden kan du søge efter forskellige <strong>butikker, restauranter</strong> og meget mere ved
+                    hjælp af søgefeltet i toppen.
                 </p>
 
                 <div class="p-3 mb-4 border">
                     <p class="mb-0 small">
-                        <strong>Tip:</strong> Mangler der et sted? Så kan du selv indrapportere det ved at trykke på plus-ikonet ved siden af søgefeltet.
+                        <strong>Tip:</strong> Mangler der et sted? Så kan du selv indrapportere det ved at trykke på
+                        plus-ikonet ved siden af søgefeltet.
                     </p>
                 </div>
 
                 <p>
-                    Vores mål er at gøre det nemt for alle at planlægge turen hjemmefra, så man altid er sikker på, om der er plads til ens behov, før man ankommer.
+                    Vores mål er at gøre det nemt for alle at planlægge turen hjemmefra, så man altid er sikker på, om
+                    der er plads til ens behov, før man ankommer.
                 </p>
             </div>
 
             <div class="modal-footer border-0 justify-content-center pb-4">
-                <button type="button" class="btn btn-primary rounded-pill px-5 fw-bold" data-bs-dismiss="modal" style="background-color: #1a407a; border: none;">
+                <button type="button" class="btn btn-primary rounded-pill px-5 fw-bold" data-bs-dismiss="modal"
+                        style="background-color: #1a407a; border: none;">
                     Kom i gang
                 </button>
             </div>

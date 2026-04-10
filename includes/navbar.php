@@ -1,6 +1,6 @@
 
 
-<nav class="navbar sticky-bottom navbar-dark bg-success">
+<nav class="navbar fixed-bottom navbar-dark bg-success">
     <div class="container-fluid">
 
 
