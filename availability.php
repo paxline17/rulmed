@@ -5,9 +5,16 @@
 
 require "settings/init.php";
 
-if (isset($_GET['locaId'])) {
+$search = isset($_GET['search']) ? $_GET['search'] : "";
+$locaId = isset($_GET['locaId']) ? $_GET['locaId'] : null;
+
+if ($locaId) {
     $sql = "SELECT * FROM locations WHERE locaId = :locaId";
-    $binds = [":locaId" => $_GET['locaId']];
+    $binds = [":locaId" => $locaId];
+    $locations = $db->sql($sql, $binds);
+} elseif (!empty($search)) {
+    $sql = "SELECT * FROM locations WHERE locaName LIKE :search";
+    $binds = [":search" => "%$search%"];
     $locations = $db->sql($sql, $binds);
 } else {
     $sql = "SELECT * FROM locations";
@@ -53,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<div lang="da">
+<html lang="da">
 <head>
     <meta charset="utf-8">
 
@@ -82,13 +89,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container-fluid py-2">
     <div class="row align-items-center g-2">
         <div class="col-8 col-md-10">
+            <form action="" method="GET" class="m-0 p-0">
             <div class="input-group topbar">
                 <span class="input-group-text bg-white border-end-1 border-dark">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
-                    <input type="text" class="form-control border-start-1 border-dark" placeholder="Søg">
-                </div>
+                <input type="text" name="search" class="form-control border-start-1 border-dark" placeholder="Søg" value="<?= htmlspecialchars($search) ?>">
+                <button type="submit" class="d-none"></button>
             </div>
+            </form>
+        </div>
 
             <div class="col-2 col-md-1 text-center topbar">
                 <button class="btn fs-1 w-100" data-bs-toggle="modal" data-bs-target="#indrapportModal">
