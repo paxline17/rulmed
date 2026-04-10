@@ -71,6 +71,16 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   margin-bottom: 100px;
 }
 
+.text-silver-light{
+  color: #DDDD !important;
+  opacity: 0.4;
+}
+
+.text-dark{
+  color: #000000 !important;
+  opacity: 1;
+}
+
 .switch{
   position: relative;
   display: inline-block;
