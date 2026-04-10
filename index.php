@@ -44,11 +44,11 @@ require "settings/init.php";
     <a href="https://whydonate.com/da/fundraising/danmark-rundt-i-kerestol-og-handicapbil" type="button" class="btn btn-lg btn-primary">Støtte</a>
     </div>
 
-<div class="container py-4">
+<div class="container forsideContainer py-4">
 <div class="row justify-content-center g-4">
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-<div class="card h-100">
+<div class="card forsideCard h-100">
     <img src="images/danmarkRundt.svg" class="card-img-top img-fluid" alt="danmarkRundt">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Indsamling
@@ -61,7 +61,7 @@ require "settings/init.php";
 </div>
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-<div class="card h-100">
+<div class="card forsideCard h-100">
     <img src="images/Kørestol.svg" class="card-img-top img-fluid" alt="kørestol">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Livet i kørestol
@@ -76,7 +76,7 @@ require "settings/init.php";
 
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-<div class="card h-100">
+<div class="card forsideCard h-100">
     <img src="images/sponsor.svg" class="card-img-top img-fluid" alt="sponsor">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Sponsor
@@ -90,7 +90,7 @@ require "settings/init.php";
 
 
 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-<div class="card h-100">
+<div class="card forsideCard h-100">
     <img src="images/DanmarkForAlle.svg" class="card-img-top img-fluid" alt="danmarkForAlle">
     <div class="card-body">
         <h5 class="card-title d-flex justify-content-between align-items-center">Danmark for alle
