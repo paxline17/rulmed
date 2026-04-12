@@ -22,3 +22,28 @@
         </div>
     </div>
 </nav>
+
+<script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    if (localStorage.getItem('theme') === 'dark' ) {
+        body.classList.add('dark-mode');
+        if (darkModeToggle){
+            darkModeToggle.checked = true;
+        }
+    }
+
+    if (darkModeToggle){
+        darkModeToggle.addEventListener('change',() => {
+            if (darkModeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else{
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme','light');
+            }
+        });
+    }
+
+</script>

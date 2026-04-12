@@ -27,6 +27,13 @@ require "settings/init.php";
           rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
 </head>
 
 <body>

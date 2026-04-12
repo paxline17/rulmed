@@ -71,6 +71,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   margin-bottom: 100px;
 }
 
+.row > .col-10:last-child {
+  margin-bottom: 100px;
+}
+
 .text-silver-light{
   color: #DDDD !important;
   opacity: 0.4;
@@ -162,3 +166,46 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 input:checked + .slider { background-color: #133E7A; }
 input:checked + .slider:before { transform: translateX(20px); }
 
+.dark-mode, .dark-mode body {
+  background-color: #121212 !important;
+  color: white !important;
+}
+
+.dark-mode a {
+  color: #FFFFFF;
+}
+
+.dark-mode hr {
+  background-color: #fff;
+}
+
+.dark-mode .slider {
+  background-color: #444;
+}
+
+  .dark-mode input:checked + .slider {
+    background-color: #0dcaf0;
+  }
+
+.dark-mode .topbar input,
+.dark-mode .topbar .input-group-text {
+  background-color: #FFFFFF;
+  color: white;
+  border-color: #444;
+}
+
+.dark-mode .availabilityCard {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+.dark-mode .availabilityName {
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  padding: 10px;
+}
+
+.dark-mode .text-dark,
+.dark-mode .fa-solid {
+  color: #89CFF0 !important;
+}

@@ -74,6 +74,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="https://kit.fontawesome.com/5458120b39.js" crossorigin="anonymous"></script>
 
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+        }
+    </script>
+
     <link href="css/styles.css" rel="stylesheet" type="text/css">
 
 
@@ -83,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 
 <?php if (!$locaId): ?>
@@ -294,7 +301,7 @@ include("includes/navbar.php");
                                data-bs-trigger="click" title="Billeder"
                                data-bs-content="Upload et billede af indgangen eller de faciliteter du nævner."></i>
                         </label>
-                        <input type="file" name="locationImage" class="form-control" accept="image/*">
+                        <input type="file" name="locationImage" class="form-control" accept="image/*" multiple>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm">Tilføj</button>
