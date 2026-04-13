@@ -29,12 +29,20 @@ $categories = $db->sql($sql, $binds);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    $uploadedImages =[];
 
-    $imageName = "";
-    if (!empty($_FILES['locationImage']['name'])) {
-        $imageName = $_FILES['locationImage']['name'];
-        move_uploaded_file($_FILES['locationImage']['tmp_name'], "images/" . $imageName);
+    if(!empty($_FILES['locationImage']['name'][0])){
+        foreach ($_FILES['locationImage']['name'] as $key => $name) {
+            $tmpName = $_FILES['locationImage']['tmp_name'][$key];
+            $fileName = time() . "_" . $name;
+
+            if(move_uploaded_file($tmpName, "images/" . $fileName)){
+                $uploadedImages[] = $fileName;
+            }
+        }
     }
+
+    $imageString = implode(",", $uploadedImages);
 
     $sql = "INSERT INTO locations (locaName, locaCategoryId, locaAddress, locaDescription, locaParking, locaRamp, locaToilet, locaElevator, locaStairs, locaImageName) 
             VALUES (:locaName, :locaCategoryId, :locaAddress, :locaDescription, :locaParking, :locaRamp, :locaToilet, :locaElevator, :locaStairs, :locaImageName)";
@@ -49,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ":locaToilet" => isset($_POST["locaToilet"]) ? 1 : 0,
             ":locaElevator" => isset($_POST["locaElevator"]) ? 1 : 0,
             ":locaStairs" => isset($_POST["locaStairs"]) ? 1 : 0,
-            ":locaImageName" => $imageName
+            ":locaImageName" => $imageString,
     ];
 
     $db->sql($sql, $bind, false);
@@ -64,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="utf-8">
 
-    <title>Rul med</title>
+    <title>Rulmed</title>
 
     <meta name="robots" content="All">
     <meta name="author" content="Udgiver">
@@ -125,6 +133,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container my-2 p-3">
         <?php if ($locaId && !empty($locations)):
         $loca = $locations[0];
+
+            $allImages = explode(",", $loca->locaImageName);
         ?>
                 <div class="row">
                     <div class="col-12">
@@ -132,13 +142,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <i class="fa-solid fa-arrow-left"></i>
                         </a>
 
-                        <img src="images/<?= $loca->locaImageName; ?>" class="img-fluid rounded-4 mb-3 w-100 shadow-sm" alt="<?= $loca->locaName; ?>">
+                        <div id="locationCarousel" class="carousel slide mb-4 shadow-sm" data-bs-ride="carousel">
+
+                            <div class="carousel-indicators">
+                                <?php foreach ($allImages as $key => $imgName): if(empty($imgName)) continue; ?>
+                                    <button type="button" data-bs-target="#locationCarousel" data-bs-slide-to="<?= $key ?>" class="<?= $key === 0 ? 'active' : '' ?>" aria-current="<?= $key === 0 ? 'true' : 'false' ?>"></button>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <div class="carousel-inner rounded-4">
+                                <?php foreach ($allImages as $key => $imgName):
+                                    if (empty($imgName)) continue;
+                                    ?>
+                                    <div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
+                                        <img src="images/<?= trim($imgName); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#locationCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Forrige</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#locationCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Næste</span>
+                            </button>
+                        </div>
 
                         <h2 class="fw-bold mb-1"><?= $loca->locaName; ?></h2>
-                        <p class="text-muted mb-4"><?= $loca->locaAddress; ?></p>
+                        <p class="text-muted mb-1"><?= $loca->locaAddress; ?></p>
 
                         <p class="mb-5"><?= nl2br($loca->locaDescription); ?></p>
 
+                        <p class="text-muted mb-4 d-flex justify-content-center"><?php foreach ($categories as $category) {
+                                if ($category->cateId == $loca->locaCategoryId) {
+                                    echo $category->cateName;
+                                    break;
+                                }
+                            }
+                            ?>
+                        </p>
                         <div class="d-flex justify-content-between align-items-center px-2 py-3 border-top border-bottom mb-4">
 
                             <i class="fa-solid fa-wheelchair fs-3 <?=($loca->locaParking) ? 'text-dark' : 'text-silver-light' ?>" title="P-plads"></i>
@@ -168,7 +212,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="availability.php?locaId=<?= $location->locaId ?>" class="text-decoration-none"">
                     <div class="card availabilityCard">
 
-                        <img src="images/<?= $location->locaImageName; ?>"
+                        <?php
+                        $allImages = explode(",", $location->locaImageName);
+                        $firstImage = $allImages[0];
+                        ?>
+
+                        <img src="images/<?= $firstImage; ?>"
                              class="card-img h-100 availabilityImg"
                              alt="<?= $location->locaName; ?>">
 
@@ -301,7 +350,7 @@ include("includes/navbar.php");
                                data-bs-trigger="click" title="Billeder"
                                data-bs-content="Upload et billede af indgangen eller de faciliteter du nævner."></i>
                         </label>
-                        <input type="file" name="locationImage" class="form-control" accept="image/*" multiple>
+                        <input type="file" name="locationImage[]" class="form-control" accept="image/*" multiple>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm">Tilføj</button>
