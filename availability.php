@@ -348,7 +348,7 @@ include("includes/navbar.php");
                             Tilføj billeder
                             <i class="fa-solid fa-circle-info ms-2 text-primary" data-bs-toggle="popover"
                                data-bs-trigger="click" title="Billeder"
-                               data-bs-content="Upload et billede af indgangen eller de faciliteter du nævner."></i>
+                               data-bs-content="Upload et billede af indgangen eller de faciliteter du nævner. Det først skal gerne være af stedet."></i>
                         </label>
                         <input type="file" name="locationImage[]" class="form-control" accept="image/*" multiple>
                     </div>
@@ -391,8 +391,7 @@ include("includes/navbar.php");
             </div>
 
             <div class="modal-footer border-0 justify-content-center pb-4">
-                <button type="button" class="btn btn-primary rounded-pill px-5 fw-bold" data-bs-dismiss="modal"
-                        style="background-color: #1a407a; border: none;">
+                <button type="button" class="btn btn-primary bg-primary border-0 rounded-pill px-5 fw-bold" data-bs-dismiss="modal"">
                     Kom i gang
                 </button>
             </div>
