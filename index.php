@@ -36,7 +36,7 @@ require "settings/init.php";
 
 </head>
 
-<body>
+<body class="bodyForside">
 
 <div class="text-center mt-3">
     <img src="images/Logo.svg" class="img-fluid" width="130" alt="logo">
@@ -54,64 +54,48 @@ require "settings/init.php";
 </div>
 
 <div class="container forsideContainer py-4 pb-5">
-    <div class="row justify-content-center g-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
 
-        <div class="col-10 col-md-6 mx-auto">
+        <div class="col">
             <div class="card forsideCard h-100">
                 <img src="images/danmarkRundt.svg" class="card-img-top img-fluid" alt="danmarkRundt">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between align-items-center">Indsamling
-                        <button type="button" class="btn btn-lg">
-                            <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal"
-                               data-bs-target="#indsamlingsModal"></i>
-                        </button>
-                    </h5>
+                    <h5 class="card-title d-flex justify-content-between align-items-center">Indsamling</h5>
+                    <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal" data-bs-target="#indsamlingsModal"></i>
                 </div>
             </div>
         </div>
 
 
 
-            <div class="col-10 col-md-6 mx-auto">
+            <div class="col">
                 <div class="card forsideCard h-100">
                     <img src="images/Kørestol.svg" class="card-img-top img-fluid" alt="kørestol">
                     <div class="card-body">
-                        <h5 class="card-title d-flex justify-content-between align-items-center">Livet i kørestol
-                            <button type="button" class="btn btn-lg">
-                                <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal"
-                                   data-bs-target="#kørestolModal"></i>
-                            </button>
-                        </h5>
+                        <h5 class="card-title d-flex justify-content-between align-items-center">Livet i kørestol</h5>
+                        <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal" data-bs-target="#kørestolModal"></i>
                     </div>
                 </div>
             </div>
 
-                <div class="col-10 col-md-6 mx-auto">
+                <div class="col">
                     <div class="card forsideCard h-100">
                         <img src="images/sponsor.svg" class="card-img-top img-fluid" alt="sponsor">
                         <div class="card-body">
-                            <h5 class="card-title d-flex justify-content-between align-items-center">Sponsor
-                                <button type="button" class="btn btn-lg">
-                                    <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal"
-                                       data-bs-target="#sponsorModal"></i>
-                                </button>
-                            </h5>
+                            <h5 class="card-title d-flex justify-content-between align-items-center">Sponsor</h5>
+                            <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal" data-bs-target="#sponsorModal"></i>
                         </div>
                     </div>
                 </div>
 
 
-                    <div class="col-10 col-md-6 mx-auto">
+                    <div class="col">
                         <div class="card forsideCard h-100">
                             <img src="images/DanmarkForAlle.svg" class="card-img-top img-fluid" alt="danmarkForAlle">
                             <div class="card-body">
                                 <h5 class="card-title d-flex justify-content-between align-items-center">Danmark for
-                                    alle
-                                    <button type="button" class="btn btn-lg">
-                                        <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal"
-                                           data-bs-target="#danmarkForAlleModal"></i>
-                                    </button>
-                                </h5>
+                                    alle</h5>
+                                <i class="bi bi-arrow-right text-reset" data-bs-toggle="modal" data-bs-target="#danmarkForAlleModal"></i>
                             </div>
                         </div>
                     </div>
