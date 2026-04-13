@@ -214,3 +214,64 @@ input:checked + .slider:before { transform: translateX(20px); }
 .dark-mode .fa-solid {
   color: #89CFF0 !important;
 }
+
+.dark-mode .modal-content {
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid #444;
+}
+
+.dark-mode .forsideCard .card-title,
+.dark-mode .forsideCard .card-body {
+  color: white !important;
+}
+
+.dark-mode .forsideCard {
+  background-color: #1e1e1e !important;
+  border: 1px solid #333;
+  color: white !important;
+}
+
+.dark-mode .modal-body h4,
+.dark-mode .modal-body p {
+  color: #e0e0e0 !important;
+}
+
+.dark-mode .bi-arrow-right,
+.dark-mode .bi-arrow-left {
+  color: #89CFF0 !important;
+}
+
+.dark-mode .btn-primary {
+  background-color: #133E7A;
+  border-color: #133E7A;
+}
+
+.dark-mode .modal-footer .btn-secondary {
+  background-color: #444;
+  border-color: #555;
+  color: #fff;
+}
+
+.dark-mode .modal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.dark-mode .popover {
+  background-color: #2b2b2b !important;
+  border: 1px solid #444;
+}
+
+.dark-mode .popover-header {
+  background-color: #333 !important;
+  color: #89CFF0 !important;
+  border-bottom: 1px solid #444;
+}
+
+.dark-mode .popover-body {
+  color: #e0e0e0 !important;
+}
+
+.dark-mode .text-muted {
+  color: #FFFFFF !important;
+}
