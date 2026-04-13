@@ -115,9 +115,6 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 .forsideContainer {
   gap: 25px;
-  padding: 20px;
-  padding-bottom: 120px;
-
   max-width: 1100px;
   margin: 0 auto;
   justify-content: center;
@@ -146,21 +143,29 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 
 .forsideCard .card-body {
-  padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  height: 85px;
+  flex: none;
+  overflow: hidden;
+  padding: 15px 20px;
 }
 
 .forsideCard h5 {
-  margin: 0;
+  margin-bottom: 0;
   font-size: 1.15rem;
   font-weight: 500;
+  width: 100%;
 }
 
 .forsideCard .bi-arrow-right {
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+.forsideCard .btn-lg {
+  padding: 0;
+  line-height: 1;
 }
 
 input:checked + .slider { background-color: #133E7A; }
@@ -190,7 +195,7 @@ input:checked + .slider:before { transform: translateX(20px); }
 .dark-mode .topbar input,
 .dark-mode .topbar .input-group-text {
   background-color: #FFFFFF;
-  color: white;
+  color: black;
   border-color: #444;
 }
 
