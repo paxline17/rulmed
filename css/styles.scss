@@ -113,6 +113,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   border-radius: 50%;
 }
 
+.bodyForside{
+  font-family: Roboto, sans-serif;
+  padding-bottom: 130px;
+}
+
 .forsideContainer {
   gap: 25px;
   padding: 20px;
