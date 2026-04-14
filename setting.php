@@ -11,6 +11,8 @@ require "settings/init.php";
     <meta charset="utf-8">
 
     <title>Rulmed</title>
+    <link rel="icon" type="image/svg+xml" href="images/Logo.svg">
+
 
     <meta name="robots" content="All">
     <meta name="author" content="Udgiver">
@@ -65,12 +67,11 @@ require "settings/init.php";
     </div>
 </div>
 
-<div class="container pt-5">
+<div class="container pt-5 w-50">
 <hr style="
      border: 0;
      height: 1px;
      background-color: #000;
-     width; 50%;
      margin; 20px auto;
      ">
 </div>
@@ -92,7 +93,7 @@ require "settings/init.php";
         <p>Hjemmeside</p>
         <p><a href="https://rulmed.dk">www.rulmed.dk</a></p>
     </div>
-
+</div>
 
 
 

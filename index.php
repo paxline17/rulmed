@@ -11,6 +11,8 @@ require "settings/init.php";
     <meta charset="utf-8">
 
     <title>Rulmed</title>
+    <link rel="icon" type="image/svg+xml" href="images/Logo.svg">
+
 
     <meta name="robots" content="All">
     <meta name="author" content="Udgiver">
@@ -48,8 +50,8 @@ require "settings/init.php";
 
 
 <div class="text-center ">
-    <a href="availability.php" type="button" class="btn btn-lg btn-primary">Tilgængelighed</a>
-    <a href="https://whydonate.com/da/fundraising/danmark-rundt-i-kerestol-og-handicapbil" type="button"
+    <a href="availability.php" class="btn btn-lg btn-primary">Tilgængelighed</a>
+    <a href="https://whydonate.com/da/fundraising/danmark-rundt-i-kerestol-og-handicapbil"
        class="btn btn-lg btn-primary">Støtte</a>
 </div>
 
@@ -103,7 +105,7 @@ require "settings/init.php";
             </div>
 
             <div class="modal fade" id="indsamlingsModal" data-bs-backdrop="static" data-bs-keyboard="false"
-                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                 tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -137,7 +139,7 @@ require "settings/init.php";
             </div>
 
             <div class="modal fade" id="kørestolModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -175,7 +177,7 @@ require "settings/init.php";
             </div>
 
             <div class="modal fade" id="sponsorModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -198,7 +200,7 @@ require "settings/init.php";
             </div>
 
             <div class="modal fade" id="danmarkForAlleModal" data-bs-backdrop="static" data-bs-keyboard="false"
-                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                 tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

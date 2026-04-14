@@ -74,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8">
 
     <title>Rulmed</title>
+    <link rel="icon" type="image/svg+xml" href="images/Logo.svg">
 
     <meta name="robots" content="All">
     <meta name="author" content="Udgiver">
@@ -105,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container-fluid py-2">
     <div class="row align-items-center g-2">
         <div class="col-8 col-md-10">
-            <form action="" method="GET" class="m-0 p-0">
+            <form method="GET" class="m-0 p-0">
             <div class="input-group topbar">
                 <span class="input-group-text bg-white border-end-1 border-dark">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -159,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 ?>
 
                                 <div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
-                                    <img src="images/<?= trim($imgName); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
+                                    <img src="images/<?= tr_replace(['æ', 'ø', 'å', 'Æ', 'Ø', 'Å', '&'], ['%C3%A6', '%C3%B8', '%C3%A5', '%C3%86', '%C3%98', '%C3%85', '%26'], trim($imgName)); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
                                 </div>
 
                             <?php endforeach; ?>
@@ -206,8 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                 </div>
-
-
+            </div>
 
 
 <?php else: ?>
@@ -215,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php foreach ($locations as $location) : ?>
             <div class="col-12 col-md-6">
 
-                <a href="availability.php?locaId=<?= $location->locaId ?>" class="text-decoration-none"">
+                <a href="availability.php?locaId=<?= $location->locaId ?>" class="text-decoration-none">
                     <div class="card availabilityCard">
 
                         <?php
@@ -223,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $firstImage = $allImages[0];
                         ?>
 
-                        <img src="images/<?= $firstImage; ?>"
+                        <img src="images/<?= str_replace(['æ', 'ø', 'å', 'Æ', 'Ø', 'Å', '&'], ['%C3%A6', '%C3%B8', '%C3%A5', '%C3%86', '%C3%98', '%C3%85', '%26'], trim($firstImage)); ?>"
                              class="card-img h-100 availabilityImg"
                              alt="<?= $location->locaName; ?>">
 
@@ -252,12 +252,12 @@ include("includes/navbar.php");
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title w-100 text-center">Indrapporter tilgængelighed</h5>
+                <h2 class="modal-title w-100 text-center">Indrapporter tilgængelighed</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label class="form-label" for="locaName">Navn</label>
@@ -389,7 +389,6 @@ include("includes/navbar.php");
                         plus-ikonet ved siden af søgefeltet.
                     </p>
                 </div>
-
                 <p>
                     Vores mål er at gøre det nemt for alle at planlægge turen hjemmefra, så man altid er sikker på, om
                     der er plads til ens behov, før man ankommer.
@@ -397,8 +396,8 @@ include("includes/navbar.php");
             </div>
 
             <div class="modal-footer border-0 justify-content-center pb-4">
-                <button type="button" class="btn btn-primary bg-primary border-0 rounded-pill px-5 fw-bold" data-bs-dismiss="modal"">
-                Kom i gang
+                <button type="button" class="btn btn-primary bg-primary border-0 rounded-pill px-5 fw-bold" data-bs-dismiss="modal">
+                Kom i gang</button>
             </div>
         </div>
     </div>
@@ -454,7 +453,7 @@ include("includes/navbar.php");
                         <a href="availability.php?locaId=${location.locaId}" class="text-decoration-none">
                             <div class="card p-2 mb-2 shadow-sm">
                                 <div class="d-flex align-items-center">
-                                    <img src="images/${img}" width="60" height="60" class="rounded me-2" style="object-fit: cover;">
+                                    <img src="images/${img}" width="60" height="60" class="rounded me-2" style="object-fit: cover;" alt="${location.locaName}">
                                     <div>
                                         <strong>${location.locaName}</strong><br>
                                         <small>${location.locaAddress}</small>
