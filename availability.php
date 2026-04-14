@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 ?>
 
                                 <div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
-                                    <img src="images/<?= tr_replace(['æ', 'ø', 'å', 'Æ', 'Ø', 'Å', '&'], ['%C3%A6', '%C3%B8', '%C3%A5', '%C3%86', '%C3%98', '%C3%85', '%26'], trim($imgName)); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
+                                    <img src="images/<?= urlencode(trim($imgName)); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
                                 </div>
 
                             <?php endforeach; ?>
@@ -207,7 +207,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                 </div>
-            </div>
+</div>
 
 
 <?php else: ?>
@@ -223,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $firstImage = $allImages[0];
                         ?>
 
-                        <img src="images/<?= str_replace(['æ', 'ø', 'å', 'Æ', 'Ø', 'Å', '&'], ['%C3%A6', '%C3%B8', '%C3%A5', '%C3%86', '%C3%98', '%C3%85', '%26'], trim($firstImage)); ?>"
+                        <img src="images/<?= urlencode(trim($firstImage)); ?>"
                              class="card-img h-100 availabilityImg"
                              alt="<?= $location->locaName; ?>">
 
