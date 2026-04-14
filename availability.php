@@ -8,6 +8,8 @@ require "settings/init.php";
 $search = isset($_GET['search']) ? $_GET['search'] : "";
 $locaId = isset($_GET['locaId']) ? $_GET['locaId'] : null;
 
+
+
 if ($locaId) {
     $sql = "SELECT * FROM locations WHERE locaId = :locaId";
     $binds = [":locaId" => $locaId];
@@ -21,7 +23,6 @@ if ($locaId) {
     $binds = [];
     $locations = $db->sql($sql, $binds);
 }
-
 
 $sql = "SELECT * FROM categories";
 $binds = [];
@@ -111,9 +112,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
                 <input type="text" name="search" class="form-control border-start-1 border-dark" placeholder="Søg" value="<?= htmlspecialchars($search) ?>">
                 <button type="submit" class="d-none"></button>
+
             </div>
             </form>
+            <div id="liveResults" class="mt-2"></div>
         </div>
+
 
             <div class="col-2 col-md-1 text-center topbar">
                 <button class="btn fs-1 w-100" data-bs-toggle="modal" data-bs-target="#indrapportModal">
@@ -132,33 +136,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container my-2 p-3">
         <?php if ($locaId && !empty($locations)):
-        $loca = $locations[0];
-
+            $loca = $locations[0];
             $allImages = explode(",", $loca->locaImageName);
-        ?>
-                <div class="row">
-                    <div class="col-12">
-                        <a href="availability.php" class="text-dark fs-3 mb-3 d-inline-block">
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </a>
+            ?>
 
-                        <div id="locationCarousel" class="carousel slide mb-4 shadow-sm" data-bs-ride="carousel">
+            <div class="row">
+                <div class="col-12">
+                    <a href="availability.php" class="text-dark fs-3 mb-3 d-inline-block">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
 
-                            <div class="carousel-indicators">
-                                <?php foreach ($allImages as $key => $imgName): if(empty($imgName)) continue; ?>
-                                    <button type="button" data-bs-target="#locationCarousel" data-bs-slide-to="<?= $key ?>" class="<?= $key === 0 ? 'active' : '' ?>" aria-current="<?= $key === 0 ? 'true' : 'false' ?>"></button>
-                                <?php endforeach; ?>
-                            </div>
+                    <div id="locationCarousel" class="carousel slide mb-4 shadow-sm" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <?php foreach ($allImages as $key => $imgName): if(empty($imgName)) continue; ?>
+                                <button type="button" data-bs-target="#locationCarousel" data-bs-slide-to="<?= $key ?>" class="<?= $key === 0 ? 'active' : '' ?>" aria-current="<?= $key === 0 ? 'true' : 'false' ?>"></button>
+                            <?php endforeach; ?>
+                        </div>
 
-                            <div class="carousel-inner rounded-4">
-                                <?php foreach ($allImages as $key => $imgName):
-                                    if (empty($imgName)) continue;
-                                    ?>
-                                    <div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
-                                        <img src="images/<?= trim($imgName); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
+                        <div class="carousel-inner rounded-4">
+                            <?php foreach ($allImages as $key => $imgName):
+                                if (empty($imgName)) continue;
+                                ?>
+
+                                <div class="carousel-item <?= $key === 0 ? 'active' : '' ?>">
+                                    <img src="images/<?= trim($imgName); ?>" class="d-block w-100" style="height: 300px; object-fit: cover;" alt="<?= $loca->locaName; ?>">
+                                </div>
+
+                            <?php endforeach; ?>
+
+                        </div>
 
                             <button class="carousel-control-prev" type="button" data-bs-target="#locationCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -392,8 +398,7 @@ include("includes/navbar.php");
 
             <div class="modal-footer border-0 justify-content-center pb-4">
                 <button type="button" class="btn btn-primary bg-primary border-0 rounded-pill px-5 fw-bold" data-bs-dismiss="modal"">
-                    Kom i gang
-                </button>
+                Kom i gang
             </div>
         </div>
     </div>
@@ -406,6 +411,65 @@ include("includes/navbar.php");
     document.addEventListener('DOMContentLoaded', function () {
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.querySelector('input[name="search"]');
+        const resultsDiv = document.getElementById("liveResults");
+
+        const form = document.querySelector("form");
+        if (form) {
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+            });
+        }
+
+        searchInput.addEventListener("keyup", function () {
+
+            let searchValue = this.value;
+
+            if (searchValue.length === 0) {
+                resultsDiv.innerHTML = "";
+                return;
+            }
+
+            fetch("searchLocations.php?search=" + encodeURIComponent(searchValue))
+                .then(response => response.json())
+                .then(data => {
+
+                    let html = "";
+
+                    if (data.length === 0) {
+                        html = "<p class='text-muted'>Ingen resultater</p>";
+                    }
+
+                    data.forEach(location => {
+
+                        let img = "";
+                        if (location.locaImageName) {
+                            img = location.locaImageName.split(",")[0];
+                        }
+
+                        html += `
+                        <a href="availability.php?locaId=${location.locaId}" class="text-decoration-none">
+                            <div class="card p-2 mb-2 shadow-sm">
+                                <div class="d-flex align-items-center">
+                                    <img src="images/${img}" width="60" height="60" class="rounded me-2" style="object-fit: cover;">
+                                    <div>
+                                        <strong>${location.locaName}</strong><br>
+                                        <small>${location.locaAddress}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                    });
+
+                    resultsDiv.innerHTML = html;
+                });
+
+        });
+
     });
 </script>
 
